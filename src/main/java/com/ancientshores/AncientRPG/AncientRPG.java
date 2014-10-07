@@ -77,7 +77,7 @@ import com.ancientshores.AncientRPG.Util.FlatFileConnector;
 import com.ancientshores.AncientRPG.Util.SerializableZone;
 
 public class AncientRPG extends JavaPlugin {
-
+        //Konfigurationen
 	public Config config; // Die Konfiguration ???
 	public static Permission permissionHandler; // Vaults permission handler
 	public static AncientRPG plugin; // ein Objekt dieser Klasse, auf die wahrscheinlich andere Klassen zugreifen ???
@@ -92,7 +92,7 @@ public class AncientRPG extends JavaPlugin {
 	// ClassListeners
 	
 	HashMap<SpellInformationObject, UUID> executingSpells = new HashMap<SpellInformationObject, UUID>(); // ??? Hashmap für die Zauber
-
+   
 	public Logger log; // zum Aufzeichnen und Ausgeben der Fehler und anderer Meldungen ???
 	public static String partyCommand = "party"; // das Kommando, welches zum Ausführen des party codes genommen werden soll
 	public static final String partyCommandNode = "AncientRPG.Commands.party";
@@ -139,10 +139,11 @@ public class AncientRPG extends JavaPlugin {
 		manager = ApiManager.getApiManager(); // ???
 		plugin = this; // speichert in plugin das Objekt dieses Plugins, damit andere Klassen auf die verschiedenen Variablen zugreifen können
 		Plugin vault = this.getServer().getPluginManager().getPlugin("Vault"); // speichert das Objekt des Plugins Vault in vault
-		
+		/*  vault "return true" */
 		if (vault != null && vault instanceof Vault) { // wenn vault erfolgreich geladen wurde, d.h. auf dem Server vorhanden ist und aktiv ist und wirklich eine Instanz vom Vault plugin ist EDIT wenn dies nicht der Fall ist das plugin unloaden ??? warum war hier ein & geht nicht auch &&
 			log.info(String.format("[%s] Enabled Version %s", getDescription().getName(), getDescription().getVersion())); // Informiere, dass Plugin aktiviert wurde MOVE zum ende von enable
 		} else {
+			/* vault "return false */
 			log.warning(String.format("[%s] Vault was _NOT_ found! Disabling plugin.", getDescription().getName())); // warnen, dass Vault nicht gefunden wurde.
 			getPluginLoader().disablePlugin(this); // plugin deaktivieren
 			// ADD return; damit code auf keinen Fall weiter ausgeführt wird.
@@ -167,7 +168,7 @@ public class AncientRPG extends JavaPlugin {
 			
 		}
 		// =============
-		/* ermöglichen (de) Serialisierung von configs */
+		/* ermöglichen der (de) Serialisierung von configs */
 		// =============
 		enableSerialization();
 		
@@ -215,8 +216,10 @@ public class AncientRPG extends JavaPlugin {
 		 // speichert die standart config FIX weiß nicht, ob das funktioniert
 		this.saveConfig();
 		
-		///PlayerData.loadPlayerData();*/
+		//PlayerData.loadPlayerData();
 		//Kommentar ?
+	        /* Dateien Laden */
+	       
 	        AncientRPGGuild.loadGuilds();// ??? Gilden laden 
 		new AncientRPGSpellListener(this); // ??? neuer Listener für Sprüche
 		AncientRPGClass.loadClasses();// ??? Klassen laden
@@ -242,7 +245,7 @@ public class AncientRPG extends JavaPlugin {
 				}
 			}
 		
-		try {
+		try {   /*Ordner Laden und Überprüfen
 			File f = new File(AncientRPG.plugin.getDataFolder().getPath() + File.separator + "spellfreezones"); // ??? OMG warum frage ich hier nach seperator aber nicht 10 zeilen darüber WTF und warum nehme ich davor this und jetzt klasse.plugin | soll wahrscheinlich den ordner für spruchfreie zonen speichern. interessant...
 			f.mkdir(); // Ordner erstellen
 			File[] files = f.listFiles(); // Alle Dateien aus dem Ordner im Array speichern
@@ -267,6 +270,7 @@ public class AncientRPG extends JavaPlugin {
 		}
 		for (PlayerData pd : PlayerData.playerData) { // ??? Funktion
 			pd.createMissingObjects(); // ??? erstellt irgendwelche objekte
+			*/
 		}
 		
 		PlayerData.startSaveTimer(); // ??? startet irgendeinen Timer
