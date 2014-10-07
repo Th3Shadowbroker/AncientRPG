@@ -273,15 +273,21 @@ public class AncientRPG extends JavaPlugin {
 			pd.createMissingObjects(); // ??? erstellt irgendwelche objekte
 			*/
 		}
-		
-		PlayerData.startSaveTimer(); // ??? startet irgendeinen Timer
-		initializeHelpFiles(); // ??? initialisiert irgendwelche hilfedateien
-		new SpellFreeZoneListener(this); // ??? neuer Spruch freie Zonen listener. achtet der auf die Welten oder was?
-		new AncientRPGSpellListener(this); // ??? achtet das auf die auslöser der Sprüche
-		AncientRPGClass.addPerms(); // ??? fügt irgendwelche Permissions zu den Klassen hinzu
-		CreatureHp.startCleaner(); // ??? irgendwelche Kreaturen Leben werden gelöscht 
-		
-		for (Player p : Bukkit.getOnlinePlayers()) { // Herzlichen Glückwunsch. Ich glaube das funktioniert nur bei /reload... NNN ??? --- vielleicht bei join event
+		// ??? startet irgendeinen Timer
+		PlayerData.startSaveTimer(); 
+		// ??? initialisiert irgendwelche hilfedateien
+		initializeHelpFiles(); 
+		// ??? neuer Spruch freie Zonen listener. achtet der auf die Welten oder was?
+		new SpellFreeZoneListener(this); 
+		// ??? achtet das auf die auslöser der Sprüche
+		new AncientRPGSpellListener(this); 
+		// ??? fügt irgendwelche Permissions zu den Klassen hinzu
+		AncientRPGClass.addPerms(); 
+		// ??? irgendwelche Kreaturen Leben werden gelösch
+		CreatureHp.startCleaner(); 
+		/* Speichert Dateien */
+		// Herzlichen Glückwunsch. Ich glaube das funktioniert nur bei /reload... NNN ??? --- vielleicht bei join event
+		for (Player p : Bukkit.getOnlinePlayers()) { 
 			PlayerData pd = PlayerData.getPlayerData(p.getUniqueId()); // speichert die PlayerData eines Spielers ??? was für daten
 			pd.getHpsystem().playerUUID = p.getUniqueId(); // ??? setzt den spieler eines hpsystems auf den aktuellen
 			if (DamageConverter.isWorldEnabled(p.getWorld())) { // wenn der ??? DamageConverter aktiviert und in der entsprechenden Welt aktiviert ist
@@ -326,6 +332,7 @@ public class AncientRPG extends JavaPlugin {
 	}
 	
 	private void registerCommands() {
+		/* Plugin Commands */
 		try { // registrieren der Kommandos EDIT einzelne Strings löschen, und statt dessen map, list oder array nehmen und iterieren
 			Constructor<?> c = Class.forName("org.bukkit.command.PluginCommand").getDeclaredConstructors()[0];
 			c.setAccessible(true);
@@ -391,15 +398,16 @@ public class AncientRPG extends JavaPlugin {
 		}
 		
 		
-	}
-
+	}      
+          /*2mal On diable?
 	public void onDisable() {
 		this.reloadConfig();
 		config.loadkeys();
 		config.addDefaults();
 		this.saveConfig();
 		PlayerData.writePlayerData();
-		log.info("AncientRPG disabled.");
+	        system.out.printIn("Ancient RPG gestoppt"
+	        */
 		
 		AncientRPGGuild.writeGuilds();
 		
@@ -495,7 +503,7 @@ public class AncientRPG extends JavaPlugin {
 			e.printStackTrace();
 		}
 	}
-
+             //config Laden
 	public void loadConfig(FileConfiguration yc) {
 		File newconfig = new File(getDataFolder().getPath() + File.separator + "ancientrpgconfig.yml");
 		if (newconfig.exists()) {
@@ -542,7 +550,7 @@ public class AncientRPG extends JavaPlugin {
 			ancientrpgCommand = yc.getString(ancientrpgCommandNode, ancientrpgCommand);
 		}
 	}
-
+             //helps
 	public void initializeHelpFiles() {
 		PartyCommandHelp.initHelp();
 		GuildCommandHelp.initHelp();
@@ -551,10 +559,11 @@ public class AncientRPG extends JavaPlugin {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
+	//Kommandos !!!Statt command MUSS jetzt cmd genutzt werden!!!
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		String[] nargs = args;
-		String commandName = command.getName().toLowerCase();
-		if (commandName.equalsIgnoreCase(arCommand)) {
+		String cmdName = cmd.getName().toLowerCase();
+		if (cmdName.equalsIgnoreCase(arCommand)) {
 			if (args.length < 2) {
 				return true;
 			}
@@ -564,7 +573,7 @@ public class AncientRPG extends JavaPlugin {
 			nargs = buffer;
 		}
 		if (commandName.equalsIgnoreCase(levelCommand) && args.length > 1 && args[0].equals("setxp")) {
-			SetXpCommand.setXp(sender, args);
+			SetXpCommand.setXp(sender, args); 
 			return true;
 		}
 		if (commandName.equalsIgnoreCase(manaCommand)) {
