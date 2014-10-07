@@ -569,18 +569,18 @@ public class AncientRPG extends JavaPlugin {
 			}
 			String[] buffer = new String[nargs.length - 1];
 			System.arraycopy(nargs, 1, buffer, 0, nargs.length - 1);
-			commandName = nargs[0];
+			cmdName = nargs[0];
 			nargs = buffer;
 		}
-		if (commandName.equalsIgnoreCase(levelCommand) && args.length > 1 && args[0].equals("setxp")) {
+		if (cmdName.equalsIgnoreCase(levelCommand) && args.length > 1 && args[0].equals("setxp")) {
 			SetXpCommand.setXp(sender, args); 
 			return true;
 		}
-		if (commandName.equalsIgnoreCase(manaCommand)) {
+		if (cmdName.equalsIgnoreCase(manaCommand)) {
 			ManaSystem.processCommand(sender, nargs);
 			return true;
 		}
-		if (commandName.equalsIgnoreCase(guildCommand) && args.length > 1 && args[0].equals("setplayersguild")) {
+		if (cmdName.equalsIgnoreCase(guildCommand) && args.length > 1 && args[0].equals("setplayersguild")) {
 			if (sender instanceof Player && !sender.hasPermission(AncientRPGGuild.gNodeAdmin)) {
 				return false;
 			}
@@ -593,11 +593,11 @@ public class AncientRPG extends JavaPlugin {
 			}
 			return true;
 		}
-		if (commandName.equals(levelCommand) && AncientRPGExperience.isEnabled()) {
+		if (cmdName.equals(levelCommand) && AncientRPGExperience.isEnabled()) {
 			AncientRPGExperience.processCommand(sender, nargs);
 			return true;
 		}
-		if (commandName.equals(classCommand)) {
+		if (cmdName.equals(classCommand)) {
 			AncientRPGClass.processCommand(sender, nargs);
 			return true;
 		}
@@ -606,25 +606,25 @@ public class AncientRPG extends JavaPlugin {
 				AncientRPGParty.processCommand(sender, nargs, this);
 				return true;
 			}
-			if (AncientRPGParty.enabled && commandName.equals(pcCommand) && args != null) {
+			if (AncientRPGParty.enabled && cmdName.equals(pcCommand) && args != null) {
 				nargs = new String[args.length + 1];
 				System.arraycopy(args, 0, nargs, 1, args.length);
 				nargs[0] = "";
 				PartyCommandChat.processChat(sender, nargs);
 				return true;
 			}
-			if (commandName.equals(guildCommand) && AncientRPGGuild.enabled) {
+			if (cmdName.equals(guildCommand) && AncientRPGGuild.enabled) {
 				AncientRPGGuild.processCommand(sender, nargs, this);
 				return true;
 			}
-			if (commandName.equals(gcCommand) && AncientRPGGuild.enabled && args != null) {
+			if (cmdName.equals(gcCommand) && AncientRPGGuild.enabled && args != null) {
 				nargs = new String[args.length + 1];
 				System.arraycopy(args, 0, nargs, 1, args.length);
 				nargs[0] = "";
 				GuildCommandChat.processChat(sender, nargs);
 				return true;
 			}
-			if (commandName.equals(bindCommand)) {
+			if (cmdName.equals(bindCommand)) {
 				if (args != null) {
 					if (args.length == 2) {
 						SpellBindCommand.bindCommand(new String[]{"class", args[1]}, (Player) sender);
@@ -636,11 +636,11 @@ public class AncientRPG extends JavaPlugin {
 				}
 				return true;
 			}
-			if (commandName.equals(hpCommand)) {
+			if (cmdName.equals(hpCommand)) {
 				HPCommand.showHP((Player) sender);
 				return true;
 			}
-			if (commandName.equals(unbindCommand)) {
+			if (cmdName.equals(unbindCommand)) {
 				if (args != null) {
 					if (args.length == 0) {
 						ClassUnbindCommand.unbindCommand(new String[]{"unbind"}, (Player) sender);
@@ -652,7 +652,7 @@ public class AncientRPG extends JavaPlugin {
 				}
 				return true;
 			}
-			if (commandName.equals(raceCommand) && AncientRPGRace.enabled) {
+			if (cmdName.equals(raceCommand) && AncientRPGRace.enabled) {
 				AncientRPGRace.processCommand(sender, args);
 				return true;
 			}
