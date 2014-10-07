@@ -1,5 +1,6 @@
 package com.ancientshores.AncientRPG;
 
+//imports
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -127,8 +128,8 @@ public class AncientRPG extends JavaPlugin {
 	public static String brand2 = ""; // ??? NNN
 	static ResourceBundle messages; // die Texte in der jeweiligen Sprache
 
-	
-	public void onEnable() { // beim aktivieren des Plugins
+       /* onEnable bei Start des Plugins */
+	public void onEnable() { 
 		// ===
 		// initialize/log section
 		// ==
@@ -159,26 +160,28 @@ public class AncientRPG extends JavaPlugin {
 		}
 	
 		try {
-			Metrics metrics = new Metrics(this); // erstellt ein neues objekt der mcstats metrics erfassung für dieses plugin (this)
+			 // erstellt ein neues objekt der mcstats metrics erfassung für dieses plugin (this)
+			Metrics metrics = new Metrics(this);
 			metrics.start(); // beginnt die Aufzeichnung der Daten
 		} catch (IOException ex) { // noch keine Verwendung
 			
 		}
 		// =============
-		// enable (de)serialization of configs
+		/* ermöglichen (de) Serialisierung von configs */
 		// =============
 		enableSerialization();
 		
 		// ===
-		// uuid converter section
-		// ==
+		/* uuid Konvervierungs Sektion/*
+		
 		AncientRPGUUIDConverter.runConverter();
 		
 		
 		// ===
-		// event section
+		// Event Sektion
 		// ==
-		setupPermissions(); // setzt die permissions für die einzelnen commands fest ???
+		//legt die permissions für die einzelnen commands fest ???
+		setupPermissions();
 		
 		config = new Config(this);
 		config.configCheck(); // --- leer. dadrin passiert nichts
@@ -188,7 +191,7 @@ public class AncientRPG extends JavaPlugin {
 		// ==
 		new AncientRPGPlayerListener(this); // ???
 		new AncientRPGBlockListener(this); // ???
-		new AncientRPGEntityListener(this); // ???
+		new AncientRPGEntityListener(this); //???
 		
 		config.loadkeys(); // lädt die einzelnen configurationen
 		config.addDefaults(); // schreibt die standart werte der configurationen in die Dateien
@@ -207,13 +210,16 @@ public class AncientRPG extends JavaPlugin {
 
 		}
 		
-		this.setupEconomy(); //  Economysetup ausführen, verknüpfen mit Vault
-		this.saveConfig(); // speichert die standart config FIX weiß nicht, ob das funktioniert
+		//  Economysetup ausführen, verknüpfen mit Vault
+		this.setupEconomy();
+		 // speichert die standart config FIX weiß nicht, ob das funktioniert
+		this.saveConfig();
 		
-		//PlayerData.loadPlayerData();
-		AncientRPGGuild.loadGuilds(); // ??? Gilden laden
+		///PlayerData.loadPlayerData();*/
+		//Kommentar ?
+	        AncientRPGGuild.loadGuilds();// ??? Gilden laden 
 		new AncientRPGSpellListener(this); // ??? neuer Listener für Sprüche
-		AncientRPGClass.loadClasses(); // ??? Klassen laden
+		AncientRPGClass.loadClasses();// ??? Klassen laden
 		AncientRPGRace.loadRaces(); // ??? Rassen laden
 		
 			if (!new File(this.getDataFolder().getPath() + "/level").exists()) { // wenn der Levelordner nicht existiert wird er erstellt
