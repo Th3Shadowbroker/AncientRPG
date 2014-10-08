@@ -440,7 +440,8 @@ public class DamageConverter {
                             return getDamageOfEnchantementAndPotion(p, damageOfWoodAxe);
                         default:
                             return getDamageOfEnchantementAndPotion(p, damageOfFists);
-                    }
+                    }   case DIAMOND_HELMET //So Viellecht?
+                            
                 }
             }
             default:
